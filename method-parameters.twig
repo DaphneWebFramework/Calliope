@@ -1,0 +1,1 @@
+{%for item in method.arguments%}{{item.getType()}} {%if item.byReference%}&{%endif%}{%if item.isVariadic%}...{%endif%}${{item.name}}{%if item.default%} = {{item.default|raw}}{%endif%}{%if not loop.last%}, {%endif%}{%endfor%}

@@ -1,0 +1,24 @@
+{%macro empty(text)-%}
+{{text|trim ? false : true }}
+{%-endmacro%}
+
+{%macro sanitize(text)-%}
+{{text|trim|replace({'\r\n':' ', '\n':' '})|raw}}
+{%-endmacro%}
+
+{%macro renderParameter(item)-%}
+- **${{item.name}}**{%if not _self.empty(item.description)%}: {{_self.sanitize(item.description)}}{%endif%}
+{%-endmacro%}
+
+{%macro renderThrowsTag(item)-%}
+- **{{item.type}}**{%if not _self.empty(item.description)%}: {{_self.sanitize(item.description)}}{%endif%}
+{%-endmacro%}
+
+{%macro renderSeeTag(item)-%}
+{%set id = item.reference|split('\\')|last%}
+- [`{{id}}`](#{{id}}){%if not _self.empty(item.description)%}: {{_self.sanitize(item.description)}}{%endif%}
+{%-endmacro%}
+
+{%macro renderLinkTag(item)-%}
+- [{{_self.empty(item.description) ? item.link : _self.sanitize(item.description)}}]({{item.link}})
+{%-endmacro%}

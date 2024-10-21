@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <name>Calliope</name>
+  <version>1.0.0</version>
+  <description>Generates Markdown documentation from PHP classes.</description>
+  <author>Eylem Ugurel</author>
+  <email>eylemugurel@hotmail.com</email>
+  <copyright>2024 by Eylem Ugurel</copyright>
+  <transformations>
+    <transformation
+      writer="twig"
+      query="indexes.classes"
+      source="class.twig"
+      artifact="{{namespace}}/{{name}}.md"
+    />
+  </transformations>
+</template>

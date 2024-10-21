@@ -1,0 +1,50 @@
+{%import 'macros.twig' as macros-%}
+
+> ### {{method.name}}
+{%if not macros.empty(method.summary)%}
+
+{{method.summary|trim|raw}}
+{%if not macros.empty(method.description)%}
+
+{{method.description|trim|raw}}
+{%endif%}
+{%endif%}
+
+#### Syntax
+
+```php
+{%include 'method-signature.twig'%}
+```
+{%if method.arguments|length%}
+
+#### Parameters
+
+{%for item in method.arguments%}
+{{macros.renderParameter(item)}}
+{%endfor%}
+{%endif%}
+{%if not macros.empty(method.response)%}
+
+#### Return Value
+
+{{macros.sanitize(method.response.description)}}
+{%endif%}
+{%if method.tags.throws|length%}
+
+#### Exceptions
+
+{%for item in method.tags.throws%}
+{{macros.renderThrowsTag(item)}}
+{%endfor%}
+{%endif%}
+{%if method.tags.see|length or method.tags.link|length%}
+
+#### See Also
+
+{%for item in method.tags.see %}
+{{macros.renderSeeTag(item)}}
+{%endfor%}
+{%for item in method.tags.link %}
+{{macros.renderLinkTag(item)}}
+{%endfor%}
+{%endif%}

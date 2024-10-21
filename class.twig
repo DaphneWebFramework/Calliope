@@ -1,0 +1,23 @@
+{%import 'macros.twig' as macros-%}
+
+# {{node.name}}
+{%if not macros.empty(node.summary)%}
+
+{{node.summary|trim|raw}}
+{%if not macros.empty(node.description)%}
+
+{{node.description|trim|raw}}
+{%endif%}
+{%endif%}
+{%if node.methods|length%}
+
+## Methods
+{%for method in node.methods%}
+
+{%include 'method.twig'%}
+{%endfor%}
+{%endif%}
+
+---
+
+*This documentation was automatically generated using [phpDocumentor](http://www.phpdoc.org/) with the [Calliope](https://github.com/DaphneWebFramework/Calliope) template.*
