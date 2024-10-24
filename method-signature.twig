@@ -1,1 +1,1 @@
-{{method.visibility}}{%if method.static%} static{%endif%}{%if method.abstract%} abstract{%endif%}{%if method.final%} final{%endif%} function {{method.name}}({%include 'method-parameters.twig'%}): {{method.response.getType()|raw}}
+{{method.visibility}}{%if method.static%} static{%endif%}{%if method.abstract%} abstract{%endif%}{%if method.final%} final{%endif%} function {{method.name}}({%include 'method-parameters.twig'%}){%if method.name != '__construct' and method.name != '__destruct'%}: {{method.response.getType()|raw}}{%endif%}{{'\n'}}
