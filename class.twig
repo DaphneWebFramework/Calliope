@@ -9,6 +9,14 @@
 {{node.description|trim|raw}}
 {%endif%}
 {%endif%}
+{%if node.tags.link|length%}
+
+#### See Also
+
+{%for item in node.tags.link %}
+{{macros.renderLinkTag(item)}}
+{%endfor%}
+{%endif%}
 {%if node.methods|length%}
 
 ## Methods
